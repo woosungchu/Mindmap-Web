@@ -1,0 +1,12 @@
+{{#link-to "map.new" class="btn btn-primary" }}New Map{{/link-to}}
+<ul>
+{{#each model as |map|}}
+  <li>
+    {{#link-to 'map.edit' map}}
+      {{map.title}}
+    {{/link-to}}
+  </li>
+{{/each}}
+</ul>
+
+{{outlet}}

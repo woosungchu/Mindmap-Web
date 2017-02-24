@@ -1,0 +1,38 @@
+<div id="login-box" class="text-center">
+  <form class="form-horizontal" {{action 'authenticate' on='submit'}}>
+    <div class="form-group">
+      <label for="identification" class="col-sm-2 control-label">Username</label>
+      <div class="col-sm-8">
+        {{input id='identification' class="form-control" placeholder='Enter Username' value=identification}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-sm-2 control-label">Password</label>
+      <div class="col-sm-8">
+        {{input id='password' class="form-control" placeholder='Enter Password' type='password' value=password}}
+      </div>
+    </div>
+    <!--
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Remember me
+          </label>
+        </div>
+      </div>
+    </div>
+  -->
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <button type="submit" class="btn btn-default">Sign in</button>
+        {{#link-to 'users.new' tagName='button' class="btn btn-default"}}Sign up{{/link-to}}
+      </div>
+    </div>
+  </form>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</div>
+
+{{outlet}}
