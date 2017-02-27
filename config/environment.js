@@ -55,16 +55,15 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.API_HOST = 'https://alt-mindmap.herokuapp.com/';
+    ENV.APP.API_HOST = 'https://alt-mindmap.herokuapp.com';
     ENV.APP.API_NAMESPACE = 'api';
   }
-
   ENV['ember-simple-auth'] = {
     authorizer: 'authorizer:jwt'
   };
   ENV['ember-simple-auth-token'] = {
     refreshAccessTokens: true,
-    serverTokenEndpoint: '/api-token-auth/',
+    serverTokenEndpoint: ENV.APP.API_HOST+'/api-token-auth/',
     //jwt
     serverTokenRefreshEndpoint: '/api-token-refresh/',
     tokenExpireName: 'exp',
