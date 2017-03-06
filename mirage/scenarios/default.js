@@ -4,8 +4,7 @@ export default function(server) {
       user3 = server.create('user'),
       user4 = server.create('user');
 
-  server.createList('map',5, { author : user1 , title:'Title1'});
-  server.createList('map',5, { author : user2 , title:'Title2'});
-  server.createList('map',5, { author : user3 , title:'Title3'});
-  server.createList('map',5, { author : user4 , title:'Title4'});
+  server.createList('map',10);
+  server.loadFixtures('nodes');
+  server.create('node', {map:1});
 }

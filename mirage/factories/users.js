@@ -1,7 +1,6 @@
-import Mirage, { faker } from 'ember-cli-mirage';
+import { Factory, faker, trait } from 'ember-cli-mirage';
 
-export default Mirage.Factory.extend({
-  username(i){return 'test' + `${i+1}`;},
-  password(i){return 'test' + `${i+1}`;},
-  email(i){return faker.internet.email();},
+export default Factory.extend({
+  username(i){return 'username' + `${i+1}`;},
+  email(i){return faker.internet.email();}
 });
