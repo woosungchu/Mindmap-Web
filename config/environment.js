@@ -57,7 +57,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.API_HOST = 'https://alt-mindmap.herokuapp.com';
+    ENV.APP.API_HOST = 'https://s-mindmap.herokuapp.com';
     ENV.APP.API_NAMESPACE = 'api';
   }
   ENV['ember-simple-auth'] = {
