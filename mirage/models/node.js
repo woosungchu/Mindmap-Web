@@ -2,4 +2,4 @@ import { Model } from 'ember-cli-mirage';
 
 export default Model.extend({
 });
-//username,email
+//type,content,map
