@@ -1,12 +1,21 @@
-{{#link-to "maps.new" class="new-map btn btn-primary" }}New Map{{/link-to}}
-<ul>
-{{#each model as |map|}}
-  <li>
-    {{#link-to 'maps.edit' map}}
-      {{map.title}}
-    {{/link-to}}
-  </li>
-{{/each}}
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="hot-maps col-sm-8">
+      <ul>
+        {{#each model.hotMaps as |mapUnit|}}
+        <li class="panel panel-default">{{map-list-panel map=mapUnit}}</li>
+        {{/each}}
+      </ul>
+    </div>
 
+    <div class="user-maps col-sm-4">
+      {{#link-to "maps.new" class="new-map btn btn-primary" }}New Map{{/link-to}}
+      <ul>
+        {{#each model.userMaps as |mapUnit|}}
+        <li>{{map-list-item map=mapUnit}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
 {{outlet}}

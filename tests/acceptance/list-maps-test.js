@@ -2,7 +2,11 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'mindmap-web/tests/helpers/module-for-acceptance';
 import { currentSession, authenticateSession, invalidateSession } from 'mindmap-web/tests/helpers/ember-simple-auth';
 
-moduleForAcceptance('Acceptance | list maps');
+moduleForAcceptance('Acceptance | list maps',{
+	beforeEach: () => {
+		// Stub currentUser
+	}
+});
 
 test('should redirect to map list', function(assert){
 	visit('/');
@@ -12,11 +16,31 @@ test('should redirect to map list', function(assert){
 });
 
 test('should list up-to-date popular maps', function(assert){
+	let user = server.create('user');
+
+	server.create('map', {title:'before',date:new Date(),author: user});
+	server.create('map', {title:'after',date:new Date(),author: user});
+
 	visit('/');
+
+	andThen(function(){
+		assert.equal(find('div.hot-maps div.panel-heading:first').text(), 'after');
+		assert.equal(find('div.hot-maps div.panel-heading:last').text(), 'before');
+	});
 });
 
 test('should list user\'s maps order by up-to-date', function(assert){
+	let user = server.create('user'),
+			other = server.create('user');
+
+	server.createList('map',3, {title:'user-map-test',author: user});
+	server.createList('map',5, {title:'user-map-test',author: other});
+
 	visit('/');
+
+	andThen(function(){
+		assert.equal(find('div.user-maps li span.title:contains("user-map-test")').length, 3);
+	});
 });
 
 test('should link to login page for unauthorized user if new-map button clicked', function(assert){
