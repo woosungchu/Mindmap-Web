@@ -1,0 +1,48 @@
+<nav id="mindmap-navbar" class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" aria-expanded="false"
+      data-toggle="collapse" data-target="#navbar-collapser" >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{#link-to 'index' class="navbar-brand"}}MindMap{{/link-to}}
+    </div><!-- end navbar-header-->
+
+    <div id="navbar-collapser" class="collapse navbar-collapse navbar-right">
+      <!--
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default hidden-xs">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+      </form>
+       -->
+      <ul class="nav navbar-nav">
+        <li>{{#link-to "maps.index"}}Maps{{/link-to}}</li>
+          {{#if session.isAuthenticated}}
+            <!-- <li>{{#link-to "users.list"}}User{{/link-to}}</li> -->
+            <li><a href="#" {{action 'invalidateSession' preventDefault=false }}>Logout</a></li>
+          {{else}}
+            <li>{{#link-to "users.login"}}Login{{/link-to}}</li>
+            <li>{{#link-to "users.new"}}SignUp{{/link-to}}</li>
+          {{/if}}
+          <!--
+          <li>{{#link-to "index"}}Stars{{/link-to}}</li>
+          <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+           <ul class="dropdown-menu">
+             <li>{{#link-to "index"}}Test{{/link-to}}</li>
+             <li role="separator" class="divider"></li>
+             <li>{{#link-to "index"}}Test{{/link-to}}</li>
+           </ul>
+         </li>
+         -->
+      </ul>
+    </div>
+  </div>
+</nav>

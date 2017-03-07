@@ -41,6 +41,8 @@ module.exports = function(environment) {
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
+    ENV.APP.API_HOST = 'http://localhost:7357';
+    ENV.APP.API_NAMESPACE = 'api';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
@@ -59,13 +61,13 @@ module.exports = function(environment) {
     ENV.APP.API_NAMESPACE = 'api';
   }
   ENV['ember-simple-auth'] = {
-    authorizer: 'authorizer:jwt'
+    authorizer: 'authorizer:token'
   };
   ENV['ember-simple-auth-token'] = {
     refreshAccessTokens: true,
     serverTokenEndpoint: ENV.APP.API_HOST+'/api-token-auth/',
     //jwt
-    serverTokenRefreshEndpoint: '/api-token-refresh/',
+    serverTokenRefreshEndpoint: ENV.APP.API_HOST+'/api-token-refresh/',
     tokenExpireName: 'exp',
     refreshLeeway: 0,
     //ext

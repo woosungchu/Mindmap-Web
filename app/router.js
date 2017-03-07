@@ -7,8 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('maps', function(){});
-  this.route('map', function() {
+  this.route('maps', function(){
     this.route('new');
     this.route('edit', { path: '/:id' });
   });
@@ -18,7 +17,6 @@ Router.map(function() {
     this.route('logout');
     this.route('new');
   });
-
 });
 
 export default Router;

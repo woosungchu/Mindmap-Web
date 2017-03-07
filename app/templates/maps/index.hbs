@@ -1,8 +1,8 @@
-{{#link-to "map.new" class="btn btn-primary" }}New Map{{/link-to}}
+{{#link-to "maps.new" class="new-map btn btn-primary" }}New Map{{/link-to}}
 <ul>
 {{#each model as |map|}}
   <li>
-    {{#link-to 'map.edit' map}}
+    {{#link-to 'maps.edit' map}}
       {{map.title}}
     {{/link-to}}
   </li>
