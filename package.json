@@ -44,6 +44,7 @@
     "ember-simple-auth": "1.2.0-beta.1",
     "ember-simple-auth-token": "2.1.0",
     "ember-welcome-page": "^1.0.3",
-    "loader.js": "^4.0.10"
+    "loader.js": "^4.0.10",
+    "phantomjs": "^2.1.7"
   }
 }
