@@ -2,11 +2,7 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'mindmap-web/tests/helpers/module-for-acceptance';
 import { currentSession, authenticateSession, invalidateSession } from 'mindmap-web/tests/helpers/ember-simple-auth';
 
-moduleForAcceptance('Acceptance | list maps',{
-	beforeEach: () => {
-		// Stub currentUser
-	}
-});
+moduleForAcceptance('Acceptance | list maps');
 
 test('should redirect to map list', function(assert){
 	visit('/');
@@ -16,7 +12,7 @@ test('should redirect to map list', function(assert){
 });
 
 test('should list up-to-date popular maps', function(assert){
-	let user = server.create('user');
+  let user = server.create('user');
 
 	server.create('map', {title:'before',date:new Date(),author: user});
 	server.create('map', {title:'after',date:new Date(),author: user});
@@ -30,8 +26,13 @@ test('should list up-to-date popular maps', function(assert){
 });
 
 test('should list user\'s maps order by up-to-date', function(assert){
-	let user = server.create('user'),
+	let user = server.create('user',{id:3,username:'test',password:'test1234'}),
 			other = server.create('user');
+
+  authenticateSession(this.application, {
+    userId: user.id,
+    token :"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6IiIsInVzZXJuYW1lIjoidGVzdCIsImV4cCI6MTQ4OTE2MTk1Niwib3JpZ19pYXQiOjE0ODkxNjE2NTZ9.75zVE9KAovvgjInPL0XqiD7hiR0IaoMcKx0sRoWZ2IQ"
+  });
 
 	server.createList('map',3, {title:'user-map-test',author: user});
 	server.createList('map',5, {title:'user-map-test',author: other});

@@ -1,10 +1,13 @@
 export default function(server) {
-  var user1 = server.create('user'),
-      user2 = server.create('user'),
-      user3 = server.create('user'),
-      user4 = server.create('user');
+  var user3 = server.create('user',{id:3,username:'test',password:'test1234'}),
+      user1 = server.create('user',{id:1}),
+      user2 = server.create('user',{id:2}),
+      user4 = server.create('user',{id:4});
 
-  server.createList('map',10,{author:user1});
+  server.createList('map',1,{author:user1});
+  server.createList('map',2,{author:user2});
+  server.createList('map',3,{author:user3});
+  server.createList('map',4,{author:user4});
   server.loadFixtures('nodes');
   server.create('node', {map:1});
 }
