@@ -19,10 +19,7 @@ export default Ember.Route.extend({
         userMaps = null;
 
     if(currentUser){
-      alert('currentUser.id : ' +  currentUser.id)
-        userMaps = this.get('store').query('map',{author_id : currentUser.id});
-        console.log('userMaps')
-        console.log(userMaps)
+        userMaps = this.get('store').query('map',{author : currentUser.id});
     }
 
     return RSVP.hash({

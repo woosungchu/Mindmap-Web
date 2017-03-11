@@ -37,9 +37,16 @@ export default function() {
     var user = schema.db.users.insert(attrs);
     return user;
   });
+  
 
   this.get('/maps',function(schema,request){
-    return schema.db.maps;
+    var author = request.queryParams.author;
+
+    if(author){
+      return schema.db.maps.where({'authorId':author});
+    }else{
+      return schema.db.maps;
+    }
   });
   this.get('/maps/:id',function(schema,request){
     return schema.db.maps.find(request.params.id);
