@@ -1,9 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  // actions : {
-  //   getMap(id){
-  //     this.transitionToRoute('maps',id);
-  //   }
-  // }
+  sorter: ['created:desc'],
+  sortedUserMaps: Ember.computed.sort('model.userMaps','sorter'),
+  sortedHotMaps: Ember.computed.sort('model.hotMaps','sorter')
 });

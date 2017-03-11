@@ -4,10 +4,10 @@ export default function(server) {
       user2 = server.create('user',{id:2}),
       user4 = server.create('user',{id:4});
 
-  server.createList('map',1,{author:user1});
-  server.createList('map',2,{author:user2});
-  server.createList('map',3,{author:user3});
-  server.createList('map',4,{author:user4});
+  server.createList('map',1,{author:user1,created:new Date()});
+  server.createList('map',2,{author:user2,created:new Date()});
+  server.createList('map',3,{author:user3,created:new Date()});
+  server.createList('map',4,{author:user4,created:new Date()});
   server.loadFixtures('nodes');
   server.create('node', {map:1});
 }

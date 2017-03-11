@@ -6,5 +6,5 @@ export default DS.Model.extend({
     defaultValue : 'Untitled'
   }),
   nodes : DS.hasMany('node'),
-  date: DS.attr('date')
+  created: DS.attr('date')
 });

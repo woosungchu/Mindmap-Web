@@ -5,6 +5,7 @@ const { service } = Ember.inject;
 
 export default Ember.Route.extend({
   currentUser: service(),
+
   _loadCurrentUser() {
     return this.get('currentUser').load().catch(() => this.get('session').invalidate());
   },
@@ -23,9 +24,7 @@ export default Ember.Route.extend({
     }
 
     return RSVP.hash({
-      hotMaps: this.get('store').findAll('map').then(function(items){
-        return items.sortBy('date');
-      }),
+      hotMaps: this.get('store').findAll('map'),
       userMaps: userMaps
     })
   },

@@ -14,8 +14,8 @@ test('should redirect to map list', function(assert){
 test('should list up-to-date popular maps', function(assert){
   let user = server.create('user');
 
-	server.create('map', {title:'before',date:new Date(),author: user});
-	server.create('map', {title:'after',date:new Date(),author: user});
+	server.create('map', {title:'before',created:new Date(),author: user});
+	server.create('map', {title:'after',created:new Date(),author: user});
 
 	visit('/');
 
