@@ -9,7 +9,7 @@
     </div>
 
     <div class="user-maps col-sm-4">
-      {{#link-to "maps.new" class="new-map btn btn-primary" }}New Map{{/link-to}}
+      {{#link-to "maps.new" class="map-new btn btn-primary" }}New Map{{/link-to}}
       <ul>
         {{#each sortedUserMaps as |mapUnit|}}
         <li>{{map-list-item map=mapUnit}}</li>
