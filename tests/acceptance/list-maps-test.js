@@ -62,40 +62,50 @@ test('should link to map edtior for new ', function(assert){
 });
 
 test('should link to detail view for a specific map', function(assert){
+	server.createList('map',3);
 	visit('/');
-	click('a.maps-detail');
+	click('a.maps-detail:first');
 	andThen(function(){
-	  assert.equal(currentURL(), '/maps/detail', 'should redirect to detail view');
+	  assert.equal(currentRouteName(), 'maps.detail', 'should redirect to detail view');
 	});
 });
 
 test('should link to sign up and login for an unauthorized user', function(assert){
 	invalidateSession(this.application);
 	visit('/');
-	assert.equal(this.find('a.login').length, 1, 'should show login button for authorized user');
-	assert.equal(this.find('a.signup').length, 1, 'should show signup button for authorized user');
+
+	andThen(function(){
+		assert.equal(find('a.login').length, 1, 'should show login button for unauthorized user');
+		assert.equal(find('a.signup').length, 1, 'should show signup button for unauthorized user');
+	});
 
 	click('a.login');
 	andThen(function(){
-		assert.equal(currentURL(), '/maps/detail', 'should redirect to login form page');
+		assert.equal(currentRouteName(), 'users.login', 'should redirect to login form page');
 	});
 
 	visit('/');
 	click('a.signup');
 	andThen(function(){
-		assert.equal(currentURL(), '/maps/detail', 'should redirect to signup page');
+		assert.equal(currentRouteName(), 'users.new', 'should redirect to signup page');
 	});
 });
 
 test('should link to logout for an authorized user', function(assert){
 	authenticateSession(this.application);
 	visit('/');
-	assert.equal(this.find('a.logout').length, 1, 'should show logout button for authorized user');
-	click('a.logout');
-	andThen(function(){
-		let session = currentSession(application);
 
-		assert.equal(!session.isAuthenticated, true, 'should invalidate session');
+	let session = currentSession(this.application);
+	andThen(function(){
+		assert.equal(session.get('isAuthenticated'), true, 'session should be validated');
+	});
+
+
+	click('a.logout');
+	visit('/');
+	andThen(function(){
+		assert.equal(find('a.login').length, 1, 'should show login button for unauthorized user');
+		assert.equal(session.get('isAuthenticated'), false, 'should invalidate session');
 	});
 });
 
@@ -103,6 +113,6 @@ test('should link to map list', function(assert){
 	visit('/');
 	click('a.maps-list');
 	andThen(function(){
-		assert.equal(currentURL(), '/maps', 'should redirect to map list view');
+		assert.equal(currentRouteName(), 'maps.index', 'should redirect to map list view');
 	});
 });
