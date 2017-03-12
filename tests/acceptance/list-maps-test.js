@@ -63,29 +63,46 @@ test('should link to map edtior for new ', function(assert){
 
 test('should link to detail view for a specific map', function(assert){
 	visit('/');
-	click('a.map-detail');
+	click('a.maps-detail');
 	andThen(function(){
-	  assert.equal(currentURL(), '/maps/new', 'should redirect to map editor');
+	  assert.equal(currentURL(), '/maps/detail', 'should redirect to detail view');
 	});
 });
 
 test('should link to sign up and login for an unauthorized user', function(assert){
+	invalidateSession(this.application);
+	visit('/');
+	assert.equal(this.find('a.login').length, 1, 'should show login button for authorized user');
+	assert.equal(this.find('a.signup').length, 1, 'should show signup button for authorized user');
 
+	click('a.login');
+	andThen(function(){
+		assert.equal(currentURL(), '/maps/detail', 'should redirect to login form page');
+	});
+
+	visit('/');
+	click('a.signup');
+	andThen(function(){
+		assert.equal(currentURL(), '/maps/detail', 'should redirect to signup page');
+	});
 });
 
-test('should link to logout for an unauthorized user', function(assert){
+test('should link to logout for an authorized user', function(assert){
+	authenticateSession(this.application);
+	visit('/');
+	assert.equal(this.find('a.logout').length, 1, 'should show logout button for authorized user');
+	click('a.logout');
+	andThen(function(){
+		let session = currentSession(application);
 
+		assert.equal(!session.isAuthenticated, true, 'should invalidate session');
+	});
 });
 
 test('should link to map list', function(assert){
-
+	visit('/');
+	click('a.maps-list');
+	andThen(function(){
+		assert.equal(currentURL(), '/maps', 'should redirect to map list view');
+	});
 });
-
-// test('should link to map editor for authorized user', function(assert){
-// 	visit('/');
-// 	authenticateSession(this.application);
-// 	click('a.new-map');
-// 	andThen(function(){
-// 	  assert.equal(currentURL(), '/maps/new', 'should redirect to map editor');
-// 	});
-// });
