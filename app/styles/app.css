@@ -16,10 +16,36 @@
   color: #fff !important;
 }
 
-.mindmap-header {
+/*.mindmap-header {
   padding-top : 25px;
   background-color: rgba(39, 137, 216, .10);
   border-bottom : 2px solid #eee;
+}*/
+
+.pagehead{
+  min-height: 60px;
+  background-color: rgba(39, 137, 216, .10);
+  margin-bottom: 10px;
+}
+
+.pagehead ul{
+  float:right;
+  list-style-type: none;
+}
+
+.pagehead li a {
+  text-align: center;
+  margin: 10px 3px 0px;
+  padding: 8px 5px;
+  max-width: 1200px;
+  background-color: inherit;
+  color :rgba(39, 137, 216, 1.0);
+  border: 0px;
+}
+
+.pagehead .breadcrumb{
+  background-color: inherit;
+  margin: 20px 0 0 0;
 }
 
 #mindmap-container {

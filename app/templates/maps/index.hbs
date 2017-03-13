@@ -1,5 +1,15 @@
+<div class="pagehead">
+  <div class="container">
+    <ul class="pull-right">
+      <li>
+        {{#link-to "maps.new" class="map-new btn btn-primary" }}New Map{{/link-to}}
+      </li>
+    </ul>
+  </div>
+</div>
 <div class="container">
   <div class="row">
+    <!--Popular Maps-->
     <div class="hot-maps col-sm-8">
       <ul>
         {{#each sortedHotMaps as |mapUnit|}}
@@ -7,9 +17,8 @@
         {{/each}}
       </ul>
     </div>
-
+    <!--User Maps-->
     <div class="user-maps col-sm-4">
-      {{#link-to "maps.new" class="map-new btn btn-primary" }}New Map{{/link-to}}
       <ul>
         {{#each sortedUserMaps as |mapUnit|}}
         <li>{{map-list-item map=mapUnit}}</li>
