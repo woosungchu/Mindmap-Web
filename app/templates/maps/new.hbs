@@ -1,11 +1,15 @@
 <div class="pagehead">
   <div class="container">
-    <h2 class="title pull-left">{{model.title}}</h2>
-    <ol class="breadcrumb pull-right">
-      <li><span class="author">{{model.author.username}}</span></li>
-      <li><span class="created">{{model.created}}</span></li>
+    <ol class="breadcrumb pull-left">
+      <li><h2 class="title">{{model.title}}</h2></li>
+      <li><span class="author small">{{model.author.username}}</span></li>
+      <li><span class="created small">{{date-formatter model.created}}</span></li>
+      <li><span>Edit</span></li>
     </ol>
+    <ul class="pull-right">
+      <li><span>save</span></li>
+    </ul>
   </div>
 
 </div>
-{{map-editor postMindMap=(action 'postMindMap')}}
+{{map-editor map=model postMindMap=(action 'postMindMap')}}

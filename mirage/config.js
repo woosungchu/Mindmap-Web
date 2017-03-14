@@ -37,7 +37,7 @@ export default function() {
     var user = schema.db.users.insert(attrs);
     return user;
   });
-  
+
 
   this.get('/maps',function(schema,request){
     var author = request.queryParams.author;
@@ -51,10 +51,21 @@ export default function() {
   this.get('/maps/:id',function(schema,request){
     return schema.db.maps.find(request.params.id);
   });
+  this.put('/maps/:id',function(schema,request){
+    var attrs = JSON.parse(request.requestBody);
+    var map = schema.db.maps.update(request.params.id,attrs);
+    return map;
+  });
   this.post('/maps',function(schema,request){
     var attrs = JSON.parse(request.requestBody);//.maps;
     var map = schema.db.maps.insert(attrs);
     return map;
+  });
+
+  this.post('/nodes',function(schema,request){
+    var attrs = JSON.parse(request.requestBody);//.maps;
+    var node = schema.db.nodes.insert(attrs);
+    return node;
   });
 
 

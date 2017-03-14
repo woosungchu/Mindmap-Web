@@ -23,4 +23,16 @@ test('display title, author and created date', function(assert) {
 });
 
 test('new map should have one default node', function(assert) {
+  let user = server.create('user',{id:3,username:'mapmaker',password:'test1234'});
+
+  authenticateSession(this.application, {
+    userId: user.id,
+    token :"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6IiIsInVzZXJuYW1lIjoidGVzdCIsImV4cCI6MTQ4OTE2MTk1Niwib3JpZ19pYXQiOjE0ODkxNjE2NTZ9.75zVE9KAovvgjInPL0XqiD7hiR0IaoMcKx0sRoWZ2IQ"
+  });
+
+  visit('/maps/new');
+
+  andThen(function(){
+    assert.equal(find('#map-editor .node').length, 1, 'Initialized one node');
+  });
 });
