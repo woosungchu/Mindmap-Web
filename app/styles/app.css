@@ -16,12 +16,6 @@
   color: #fff !important;
 }
 
-/*.mindmap-header {
-  padding-top : 25px;
-  background-color: rgba(39, 137, 216, .10);
-  border-bottom : 2px solid #eee;
-}*/
-
 .pagehead{
   min-height: 60px;
   background-color: rgba(39, 137, 216, .10);
@@ -49,32 +43,19 @@
   padding: 0px;
 }
 
-#mindmap-container {
+/*#mindmap-container {
 
 }
 
 #map-tool {
   border-bottom: 1px solid #eee
-}
+}*/
 
 #map-editor{
   overflow : hidden;
   width : 100%;
   height:100vh;
 }
-
-#tool {
-}
-#tool rect {
-  fill: rgba(39, 137, 216, .20);
-  width : 25%;
-  height : 100%;
-}
-#tool text {
-  fill: black;
-}
-
-
 
 /*login*/
 #login-box {

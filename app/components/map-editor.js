@@ -13,15 +13,18 @@ export default Ember.Component.extend({
         nodes = map.get('nodes'),
         node = null;
 
-    node = this.get('store').createRecord('node',{
-      map: map.id,
-      content: 'node'
-    })
-    node.save().then((node) =>{
-      nodes.pushObject(node);
-      map.save();
-    });
-
+    if(nodes.get('length') === 0){
+      // Add one node for empty map
+      node = this.get('store').createRecord('node',{
+        map: map.id,
+        content: 'node'
+      })
+      node.save().then((node) =>{
+        nodes.pushObject(node);
+        map.save();
+        this.set('targetMap',map);
+      });
+    }
   },
 
   actions : {
@@ -32,7 +35,7 @@ export default Ember.Component.extend({
       alert(map.id);
 
       //action from map/new.js
-      this.get('postMindMap')(...arguments);
+      // this.get('postMindMap')(...arguments);
     }
   }
 

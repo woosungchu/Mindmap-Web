@@ -4,10 +4,10 @@
       <li><h2 class="title">{{model.title}}</h2></li>
       <li><span class="author small">{{model.author.username}}</span></li>
       <li><span class="created small">{{date-formatter model.created}}</span></li>
-      <li><span>Edit</span></li>
+      <li><span class="btn btn-default">Edit</span></li>
     </ol>
     <ul class="pull-right">
-      <li><span>save</span></li>
+      <li><span class="btn btn-default" {{action 'postMindMap' model}} >save</span></li>
     </ul>
   </div>
 
